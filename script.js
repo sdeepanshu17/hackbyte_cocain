@@ -5,35 +5,7 @@ function myFunction() {
     } else {
         x.className = "topnav1";
     }
-}
-
-var slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
-}
-
+}   
 
 var carvid = document.getElementById("car-vid");
 var speed = document.getElementById("speed");
@@ -46,24 +18,18 @@ window.addEventListener('keydown', function (e) {
     }
 });
 
-checkevent();
+document.addEventListener('keydown', event => {
+    if (event.code === 'Space') {
+        playVid();
+        document.getElementById('roarsection').scrollIntoView(true);
+    }
+})
 
-function checkevent() {
-    document.addEventListener('keydown', event => {
-        if (event.code === 'Space') {
-            playVid();
-            document.getElementById('roarsection').scrollIntoView(true);
-        }
-    })
-
-    document.addEventListener('keyup', Event => {
-        if (Event.code === 'Space') {
-            initial();
-        }
-    })
-}
-
-
+document.addEventListener('keyup', Event => {
+    if (Event.code === 'Space') {
+        initial();
+    }
+})
 
 const maxspeed = 341;
 let currspeed = 0;
